@@ -15,7 +15,7 @@ for path in ${FILES[@]}; do
     parts=( $path )
     name=${parts[${#parts[@]}-1]}
     echo "Flatten > ${name}"
-    truffle-flattener "${path}" > "${OUT_DIR}/${name}"
+    hardhat flatten "${path}" > "${OUT_DIR}/${name}"
 done
 
 echo "Done!"

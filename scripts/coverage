@@ -2,6 +2,5 @@
 
 set -eo pipefail
 
-npm run compile
-npm run typechain
-npx buidler coverage $@
+yarn compile
+npx hardhat coverage $@

@@ -1,13 +1,20 @@
-import { Wallet } from 'ethers'
-import { task, usePlugin } from '@nomiclabs/buidler/config'
+import { task } from 'hardhat/config'
+
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 // Plugins
 
-usePlugin('@nomiclabs/buidler-ethers')
-usePlugin('@nomiclabs/buidler-etherscan')
-usePlugin('@nomiclabs/buidler-waffle')
-usePlugin('buidler-gas-reporter')
-usePlugin('solidity-coverage')
+import '@nomiclabs/hardhat-ethers'
+import '@nomiclabs/hardhat-etherscan'
+import '@nomiclabs/hardhat-waffle'
+import 'hardhat-abi-exporter'
+import 'hardhat-gas-reporter'
+import 'hardhat-contract-sizer'
+import '@tenderly/hardhat-tenderly'
+import '@openzeppelin/hardhat-upgrades'
+import '@typechain/hardhat'
 
 // Networks
 
@@ -56,7 +63,6 @@ task('accounts', 'Prints the list of accounts', async (taskArgs, bre) => {
   }
 })
 
-
 // Config
 
 const config = {
@@ -65,19 +71,25 @@ const config = {
     tests: './test',
     artifacts: './build/contracts',
   },
-  solc: {
-    version: '0.6.12',
-    optimizer: {
-      enabled: true,
-      runs: 200,
-    },
+  solidity: {
+    compilers: [
+      {
+        version: '0.7.4',
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+    ],
   },
-  defaultNetwork: 'buidlerevm',
+  defaultNetwork: 'hardhat',
   networks: {
-    buidlerevm: {
+    hardhat: {
       chainId: 1337,
       loggingEnabled: false,
-      gas: 11000000,
+      gas: 12000000,
       gasPrice: 'auto',
       blockGasLimit: 12000000,
       accounts: [
@@ -138,9 +150,25 @@ const config = {
     currency: 'USD',
     outputFile: 'reports/gas-report.log',
   },
+  typechain: {
+    outDir: 'build/types',
+    target: 'ethers-v5',
+  },
+  abiExporter: {
+    path: './build/abis',
+    clear: false,
+    flat: true,
+  },
+  tenderly: {
+    project: 'graph-network',
+    username: 'abarmat',
+  },
+  contractSizer: {
+    alphaSort: true,
+    runOnCompile: false,
+  },
 }
 
 setupDefaultNetworkProviders(config)
 
 export default config
-

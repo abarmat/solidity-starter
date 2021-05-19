@@ -1,6 +1,8 @@
 pragma solidity ^0.7.4;
 import "hardhat/console.sol";
 
+// NOTE: This is just a test contract, please delete me
+
 contract Counter {
   uint256 count = 0;
 

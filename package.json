@@ -29,7 +29,7 @@
     "README.md",
     "LICENSE"
   ],
-  "author": "",
+  "author": "Ariel Barmat",
   "license": "MIT",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",

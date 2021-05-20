@@ -1,4 +1,4 @@
-pragma solidity ^0.7.4;
+pragma solidity ^0.7.6;
 import "hardhat/console.sol";
 
 // NOTE: This is just a test contract, please delete me

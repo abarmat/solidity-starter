@@ -37,7 +37,9 @@ describe('Counter', () => {
     // 5
     it('should fail due to underflow exception', async () => {
       const tx = counter.countDown()
-      await expect(tx).revertedWith('Uint256 underflow')
+      await expect(tx).revertedWith(
+        'VM Exception while processing transaction: reverted with panic code 0x11 (Arithmetic operation underflowed or overflowed outside of an unchecked block)',
+      )
     })
 
     it('should count down', async () => {

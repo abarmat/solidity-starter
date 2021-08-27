@@ -74,11 +74,16 @@ const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: '0.7.6',
+        version: '0.8.7',
         settings: {
           optimizer: {
             enabled: true,
             runs: 200,
+          },
+          outputSelection: {
+            '*': {
+              '*': ['storageLayout'],
+            },
           },
         },
       },

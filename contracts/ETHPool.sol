@@ -3,9 +3,37 @@
 pragma solidity ^0.8.7;
 import "hardhat/console.sol";
 
-// NOTE: This is just a test contract, please delete me
-
 contract Counter {
+
+    //global variables
+
+    //structs
+        //Deposit
+            //amountStaked
+            //timeStaked
+
+        //staking
+            //user
+            //amount
+            //time
+
+    //mappings
+        //user (address) -> deposits (Deposit[]) 
+
+    //events
+        //deposit (user (address), amount (uint256), timestamp (uint256))
+        //withdrawal
+
+    //constructor
+        //set Team address
+
+    //modifier: onlyTeam
+
+    //functions
+        //deposit stake
+        //deposit reward
+        //distribute rewards
+
     uint256 count = 0;
 
     event CountedTo(uint256 number);

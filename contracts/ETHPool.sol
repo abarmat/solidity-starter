@@ -7,22 +7,18 @@ contract Counter {
 
     //global variables
 
-    //structs
-        //Deposit
-            //amountStaked
-            //timeStaked
+    //amount in pool
 
-        //staking
-            //user
-            //amount
-            //time
+    //dynamic arrays
+        //users (address[])
 
     //mappings
-        //user (address) -> deposits (Deposit[]) 
+        //userStakes: user (address) -> amountStaked (uint256)
 
     //events
         //deposit (user (address), amount (uint256), timestamp (uint256))
-        //withdrawal
+        //withdrawal (user (address), amount (uint256), timestamp(uint256))
+        //reward (user(address), amount (uint256), timestamp(uint256))
 
     //constructor
         //set Team address
@@ -30,33 +26,32 @@ contract Counter {
     //modifier: onlyTeam
 
     //functions
-        //deposit stake
-        //deposit reward
-        //distribute rewards
+        //deposit stake ( payable, external)
+            //require msg.value > 0
+            //if userStakes[msg.sender] is 0,
+                //push msg.sender to users array
+            //add msg.value to userStakes[msg.sender]
+            //add msg.value to total pool amount
 
-    uint256 count = 0;
+            //event Deposit
 
-    event CountedTo(uint256 number);
+        //deposit reward (external onlyTeam)
+            //require pool amount > 0
+            //for every user in pool,
+                //percentage = userStakes[user] * 100 / total amount in pool
+                //reward = userStakes[user] + msg.value * percentage / 100
+                //add reward to user's amount staked
 
-    function getCount() public view returns (uint256) {
-        return count;
-    }
+            //event Reward
 
-    function countUp() public returns (uint256) {
-        console.log("countUp: count =", count);
-        uint256 newCount = count + 1;
-        require(newCount > count, "Uint256 overflow");
-        count = newCount;
-        emit CountedTo(count);
-        return count;
-    }
+        //withdraw stake (external)
+            //require userStakes[msg.sender] > 0
+            //require msg.value > 0
+            //subtract msg.value from user's amount staked
+            //call fallback to send ether rewards to msg.sender'
 
-    function countDown() public returns (uint256) {
-        console.log("countDown: count =", count);
-        uint256 newCount = count - 1;
-        require(newCount < count, "Uint256 underflow");
-        count = newCount;
-        emit CountedTo(count);
-        return count;
-    }
+            //require transfer was successul
+
+            //event Withdrawal
+
 }

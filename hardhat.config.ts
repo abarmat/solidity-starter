@@ -15,6 +15,7 @@ import 'hardhat-contract-sizer'
 import '@tenderly/hardhat-tenderly'
 import '@openzeppelin/hardhat-upgrades'
 import '@typechain/hardhat'
+import 'solidity-coverage'
 
 // Networks
 
@@ -26,6 +27,8 @@ interface NetworkConfig {
 }
 
 const networkConfigs: NetworkConfig[] = [
+  { network: 'goerli', chainId: 5 },
+  { network: 'sepolia', chainId: 11155111 },
   { network: 'mainnet', chainId: 1 },
   { network: 'ropsten', chainId: 3 },
   { network: 'rinkeby', chainId: 4 },
@@ -74,7 +77,7 @@ const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: '0.8.7',
+        version: '0.8.15',
         settings: {
           optimizer: {
             enabled: true,

@@ -1,4 +1,4 @@
-const skipFiles = ['']
+const skipFiles = []
 
 module.exports = {
   providerOptions: {
@@ -7,4 +7,5 @@ module.exports = {
   },
   skipFiles,
   istanbulFolder: './reports/coverage',
+  testfiles: 'test/*.test.ts'
 }

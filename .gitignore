@@ -1,17 +1,17 @@
 # Ignore node stuff
-node_modules/
+node_modules
 yarn-error.log
 
 # Ignore build stuff
-cache/
-build/
-dist/
+cache
+build
+dist
 
 # Buidler cache
-cached/
+cached
 
 # Ignore solc bin output
-bin/
+bin
 
 # Others
 .env
@@ -19,4 +19,5 @@ bin/
 .vscode
 
 # Reports
-/reports
+coverage.json
+reports
